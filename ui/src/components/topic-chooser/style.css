@@ -1,21 +1,21 @@
-form {
+.topic-chooser {
   display: flex;
   gap: 12px;
   justify-content: center;
-}
 
-input {
-  display: none;
-}
+  input {
+    display: none;
+  }
 
-label {
-  border: 1px solid hsl(0, 0%, 35%);
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 6px 12px;
+  label {
+    box-shadow: inset 0 0 0 2px var(--color-fg);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
 
-  &:has(:checked) {
-    /* border-color: #f0f; */
-    box-shadow: inset 0 0 0 1px #f0f;
+    &:has(:checked) {
+      background-color: var(--color-fg);
+      color: var(--color-bg);
+    }
   }
 }

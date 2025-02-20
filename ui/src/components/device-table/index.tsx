@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Device, MqttValue } from "../../types";
-import "./style.css";
 import AddDatumModal from "../add-datum-modal";
+import { Device } from "../../types";
+import { formatKey, formatValue } from "../../utils";
+import "./style.css";
 
 interface Props {
   devices: Device[];
@@ -15,27 +16,6 @@ function getAllFields(devices: Device[]): string[] {
   return [
     ...new Set(devices.flatMap(([, fields]) => Object.keys(fields))),
   ].sort(byName);
-}
-
-/** "Translates" a field key into something more human-readable. */
-function formatKey(key: string) {
-  return key.split("_").join(" ");
-}
-
-function formatValue(value: MqttValue) {
-  if (typeof value === "boolean") {
-    return value ? "🟥" : "🟢";
-  }
-
-  return value;
-}
-
-async function addDatum(device: Device) {
-  const response = await fetch("http://localhost:3000/publish", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ topic: device[0], fields: JSON.parse(payload) }),
-  });
 }
 
 function DeviceRow({
@@ -94,7 +74,13 @@ export default function DeviceTable({ devices }: Props) {
           ))}
         </tbody>
       </table>
-      {modalShown && <AddDatumModal device={modalShown} />}
+      {modalShown && (
+        <AddDatumModal
+          device={modalShown}
+          allFields={allFields}
+          onClose={() => showModalFor(null)}
+        />
+      )}
     </>
   );
 }

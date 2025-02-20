@@ -49,7 +49,12 @@ client.on("connect", () => {
 app.post("/publish", (req, res) => {
   const { topic, fields } = req.body;
 
-  console.log("stuff", topic, fields);
+  client.publish(topic, JSON.stringify(fields), () => {
+    console.log(`Published ${JSON.stringify(fields)} to ${topic}`);
+  });
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.status(200).json({ success: true });
 });
 
 app.listen(port, () => {

@@ -13,7 +13,7 @@ export default function TopicChooser({
   selectedTopics,
 }: Props) {
   return (
-    <form>
+    <form className="topic-chooser">
       {allTopics.map((topic) => (
         <label key={topic}>
           <input
