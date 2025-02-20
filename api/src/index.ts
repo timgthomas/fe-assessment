@@ -34,7 +34,7 @@ client.on("connect", () => {
           cycles: Math.floor(Math.random() * 200),
           capacity: 2500,
           runtime_remaining: `${Math.floor(Math.random() * 5)}h ${Math.floor(
-            Math.random() * 60
+            Math.random() * 60,
           )}m`,
           low_warning: Math.random() < 0.1,
         };
