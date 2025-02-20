@@ -2,6 +2,7 @@ import { useState } from "react";
 import DeviceTable from "./components/device-table";
 import TopicChooser from "./components/topic-chooser";
 import useMqtt from "./hooks/useMqtt";
+import { Device } from "./types";
 
 const BROKER_URL = "wss://broker.emqx.io:8084/mqtt";
 

@@ -46,6 +46,12 @@ client.on("connect", () => {
   }, 5000);
 });
 
+app.post("/publish", (req, res) => {
+  const { topic, fields } = req.body;
+
+  console.log("stuff", topic, fields);
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
