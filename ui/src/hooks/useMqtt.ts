@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import mqtt from "mqtt";
-
-type MqttValue = boolean | number | string;
-export type Device = [key: string, fields: Record<string, MqttValue>];
+import { Device } from "../types";
 
 export default (brokerUrl: string, topics: Set<string>): Device[] => {
   const [messages, setMessages] = useState({});

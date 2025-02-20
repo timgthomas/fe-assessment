@@ -1,0 +1,19 @@
+table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-transform: capitalize;
+  width: 100%;
+}
+
+td,
+th {
+  padding-block: 8px;
+}
+
+td {
+  text-align: center;
+}
+
+thead th {
+  vertical-align: bottom;
+}
