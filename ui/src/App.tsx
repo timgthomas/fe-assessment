@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useMqtt, { Device } from "./hooks/useMqtt";
+import TopicChooser from "./components/topic-chooser";
 
 const BROKER_URL = "wss://broker.emqx.io:8084/mqtt";
 
@@ -40,10 +41,12 @@ function DeviceTable({ devices }: TableProps) {
 
     return (
       <tr key={key}>
-        <td>{id}</td>
-        <td>{name}</td>
+        <th>{id}</th>
+        <td>
+          {name} {id}
+        </td>
         {allFields.map((key) => (
-          <th>{fields[key] || "—"}</th>
+          <td>{fields[key] || "—"}</td>
         ))}
       </tr>
     );
@@ -81,22 +84,14 @@ const App: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>MQTT Messages</h1>
-      <div>
-        {ALL_TOPICS.map((topic) => (
-          <label key={topic}>
-            <input
-              type="checkbox"
-              checked={topics.has(topic)}
-              onChange={() => onTopicToggle(topic)}
-            />
-            {topic}
-          </label>
-        ))}
-      </div>
+    <>
+      <TopicChooser
+        allTopics={ALL_TOPICS}
+        selectedTopics={topics}
+        onChange={onTopicToggle}
+      />
       <DeviceTable devices={devices} />
-    </div>
+    </>
   );
 };
 
